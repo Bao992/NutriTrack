@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+client/dist/
+server/dist/
+
+# Environment secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Operating system
+.DS_Store
+Thumbs.db
+# Local prototype approval records
+/data/
