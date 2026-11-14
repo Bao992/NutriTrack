@@ -2,24 +2,30 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+
 import mealRoutes from "./routes/mealRoutes";
 import deliveryRoutes from "./routes/deliveryRoutes";
 import investigationRoutes from "./routes/investigationRoutes";
 import workflowRoutes from "./routes/workflowRoutes";
 import approvalRoutes from "./routes/approvalRoutes";
 
-
+// Load environment variables
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Allowed frontend origins
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:5175",
+  process.env.CLIENT_URL,
+].filter((origin): origin is string => Boolean(origin));
+
+// Middleware
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "http://localhost:5175",
-    ],
+    origin: allowedOrigins,
   })
 );
 
@@ -34,9 +40,8 @@ app.get("/api/health", (_req, res) => {
   });
 });
 
-// Meal calculation routes
+// API routes
 app.use("/api/meals", mealRoutes);
-
 app.use("/api/deliveries", deliveryRoutes);
 app.use("/api/investigations", investigationRoutes);
 app.use("/api/workflows", workflowRoutes);

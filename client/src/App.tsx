@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import ReactMarkdown from "react-markdown";
 
-const API_URL = "http://localhost:5000/api/workflows";
-const APPROVALS_API_URL = "http://localhost:5000/api/approvals";
-const AI_INSIGHTS_API_URL = "http://localhost:5000/api/workflows/ai-insights";
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+
+const API_URL = `${API_BASE_URL}/workflows`;
+const APPROVALS_API_URL = `${API_BASE_URL}/approvals`;
+const AI_INSIGHTS_API_URL = `${API_BASE_URL}/workflows/ai-insights`;
 
 const demoInput = {
   learnersPresent: 610,
